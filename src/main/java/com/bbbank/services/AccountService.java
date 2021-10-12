@@ -1,5 +1,5 @@
 package com.bbbank.services;
 
-public class UserService {
+public class AccountService {
 
 }
