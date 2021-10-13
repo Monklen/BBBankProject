@@ -11,11 +11,13 @@ public class AccountHolder {
 	private String lastname;
 	private String username;
 	private String password;
+	private double balance;
 	
 	//--From practice project coder - ethan mcgill--
 	
 	public AccountHolder() {}
 
+	//used to send user info to the database (database auto generates the id
 	public AccountHolder(String firstname, String lastname, String username, String password) {
 		super();
 		this.firstname = firstname;
@@ -24,15 +26,15 @@ public class AccountHolder {
 		this.password = password;
 	}
 
-
-
-	public AccountHolder(int id, String firstname, String lastname, String username, String password) {
+	//used to get info from the data base and create a user from it
+	public AccountHolder(int id, String firstname, String lastname, String username, String password,double balance) {
 		super();
 		this.id = id;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.username = username;
 		this.password = password;
+		this.balance = balance;
 	}
 
 
@@ -85,12 +87,22 @@ public class AccountHolder {
 		this.password = password;
 	}
 
+	public double getBalance() {
+		return balance;
+	}
+
+	public void setBalance(double balance) {
+		this.balance = balance;
+	}
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", username=" + username
-				+ ", password=" + password + "]";
+		return "AccountHolder [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", username="
+				+ username + ", password=" + password + ", balance=" + balance + "]";
 	}
+
+	
+	
 	
 	
 

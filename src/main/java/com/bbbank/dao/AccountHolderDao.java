@@ -11,12 +11,12 @@ public interface AccountHolderDao {
 	
 List<AccountHolder> getAllAccountHolders();
 	
-AccountHolder getUserByUsername(String username);
+AccountHolder getUserByAccountHolder(String username);
 	
-	void createUser(AccountHolder ach) throws SQLException;
+	void createAccountHolder(AccountHolder ach) throws SQLException;
 	
-	void updateUser(AccountHolder ach);
+	void updateAccountHolder(AccountHolder ach);
 	
-	void deleteUser(AccountHolder ach);
+	void deleteAccountHolder(AccountHolder ach);
 
 }
