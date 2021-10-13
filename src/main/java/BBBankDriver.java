@@ -2,13 +2,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import com.bbbank.dao.AccountHolderDao;
+import com.bbbank.dao.AccountHolderDaoDB;
+import com.bbbank.models.AccountHolder;
+
 public class BBBankDriver {
 	
 	public static void main(String[] args) {
 		
-Scanner scan = new Scanner(System.in);
+		AccountHolderDao  acDao= new AccountHolderDaoDB();
+		List<AccountHolder> aList = acDao.getAllAccountHolders();
 		
-		double balance = 100000d;
+		System.out.println(aList);
+		
+		Scanner scan = new Scanner(System.in);
+		
+/*		double balance = 100000d;
 		
 		boolean appOn = true;
 		boolean menuOn = false;
@@ -119,6 +128,6 @@ Scanner scan = new Scanner(System.in);
 				continue;
 			}
 		}
-
+*/
 	}
 }
