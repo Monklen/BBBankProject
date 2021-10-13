@@ -28,7 +28,7 @@ public class ConnectionUtil {
 	// get connection to the database
 	public Connection getConnection() {
 		ClassLoader classLoader = getClass().getClassLoader();
-		InputStream is = classLoader.getResourceAsStream("jdbc.properties");
+		InputStream is = classLoader.getResourceAsStream("jbdc.properties");
 		String url = "";
 		String username = "";
 		String password = "";

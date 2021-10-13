@@ -1,9 +1,5 @@
 package com.bbbank.models;
 
-import java.util.ArrayList;
-import java.util.List;
-
-
 public class AccountHolder {
 	
 	private int id;
@@ -16,6 +12,11 @@ public class AccountHolder {
 	//--From practice project coder - ethan mcgill--
 	
 	public AccountHolder() {}
+	
+	public AccountHolder(double balance) {
+		super();
+		this.balance = balance;
+	}
 
 	//used to send user info to the database (database auto generates the id
 	public AccountHolder(String firstname, String lastname, String username, String password) {
@@ -97,8 +98,8 @@ public class AccountHolder {
 
 	@Override
 	public String toString() {
-		return "AccountHolder [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", username="
-				+ username + ", password=" + password + ", balance=" + balance + "]";
+		return "AccountHolder \nid: " + id + "\nfirstname: " + firstname + "\nlastname: " + lastname + "\nusername: "
+				+ username;
 	}
 
 	

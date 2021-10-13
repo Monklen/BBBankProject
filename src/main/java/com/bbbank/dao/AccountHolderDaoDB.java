@@ -27,7 +27,7 @@ public class AccountHolderDaoDB implements AccountHolderDao{
 			Connection con = conUtil.getConnection();
 			
 			//create a sql statement
-			String sql = "select * from accountholders";
+			String sql = "SELECT * FROM accountholders";
 			
 			
 			Statement s = con.createStatement();
@@ -53,7 +53,7 @@ public class AccountHolderDaoDB implements AccountHolderDao{
 		
 		try {
 			Connection con = conUtil.getConnection();
-			String sql = "select * from accountholders where accountholders.username = '"+ username +"'";
+			String sql = "SELECT * FROM accountholders WHERE accountholders.username = '"+ username +"'";
 			
 			Statement s = con.createStatement();
 			ResultSet rs = s.executeQuery(sql);
@@ -78,18 +78,18 @@ public class AccountHolderDaoDB implements AccountHolderDao{
 	//use prepared statement to precompile the sql and protect against sql injection
 	
 	@Override
-	public void createAccountHolder(AccountHolder ach) throws SQLException {
+	public void createAccountHolder(AccountHolder ac) throws SQLException {
 		
 		Connection con = conUtil.getConnection();
 		
 		//still create the sql string, but with some small changes
-		String sql = "insert into accountholders (firstname,lastname,username,password) values (?,?,?,?)";
+		String sql = "INSERT INTO accountholders (firstname,lastname,username,password) VALUES (?,?,?,?)";
 		PreparedStatement ps = con.prepareStatement(sql);
 		
-		ps.setString(1, ach.getFirstname());
-		ps.setString(2, ach.getLastname());
-		ps.setString(3, ach.getUsername());
-		ps.setString(4, ach.getPassword());
+		ps.setString(1, ac.getFirstname());
+		ps.setString(2, ac.getLastname());
+		ps.setString(3, ac.getUsername());
+		ps.setString(4, ac.getPassword());
 		
 		ps.execute();
 	}
@@ -100,7 +100,7 @@ public class AccountHolderDaoDB implements AccountHolderDao{
 		Connection con = conUtil.getConnection();
 		
 		//still create the sql string, but with some small changes
-		String sql = "update accountholders set firstname = ?, lastname = ?, username = ?, password = ?) values (?,?,?,?) where accountholders.id = ?";
+		String sql = "UPDATE accountholders SET firstname = ?, lastname = ?, username = ?, password = ?) VALUES (?,?,?,?) WHERE accountholders.id = ?";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, ac.getFirstname());
 		ps.setString(2, ac.getLastname());
@@ -119,7 +119,7 @@ public class AccountHolderDaoDB implements AccountHolderDao{
 		try {
 		Connection con = conUtil.getConnection();
 		
-		String sql = "delete from accountholders where accountholders.id = ?";
+		String sql = "DELETE FROM accountholders WHERE accountholders.id = ?";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setInt(1, ach.getId());
 		ps.execute();

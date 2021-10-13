@@ -13,10 +13,10 @@ List<AccountHolder> getAllAccountHolders();
 	
 AccountHolder getUserByAccountHolder(String username);
 	
-	void createAccountHolder(AccountHolder ach) throws SQLException;
+	void createAccountHolder(AccountHolder ac) throws SQLException;
 	
-	void updateAccountHolder(AccountHolder ach);
+	void updateAccountHolder(AccountHolder ac);
 	
-	void deleteAccountHolder(AccountHolder ach);
+	void deleteAccountHolder(AccountHolder ac);
 
 }
