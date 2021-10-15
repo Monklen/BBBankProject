@@ -17,9 +17,9 @@ public class AccountService {
 		this.aDao = ac;
 	}
 	
-	public AccountHolder signup(String first, String last, String username, String password) throws UsernameAlreadyExistsException {
+	public AccountHolder signup(String first, String last, String username, String password, double balance) throws UsernameAlreadyExistsException {
 		
-		AccountHolder ac = new AccountHolder(first,last,username,password);
+		AccountHolder ac = new AccountHolder(first, last, username, password, balance);
 		
 		try {
 			aDao.createAccountHolder(ac);
@@ -53,22 +53,6 @@ public class AccountService {
 		}
 	}
 	
-//public AccountHolder deposit(double balance) throws UsernameAlreadyExistsException {
-//		
-//		AccountHolder ac = new AccountHolder(balance);
-//		
-//		try {
-//			aDao.createAccountHolder(ac);
-//			Logging.logger.info("New account has been created");
-//			
-//		}
-//		catch(SQLException e) {
-//			e.printStackTrace();
-//			Logging.logger.warn("Account already exists");
-//			throw new UsernameAlreadyExistsException();
-//		}
-//		
-//		return ac;
-//	}
+	
 
 }

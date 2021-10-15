@@ -83,50 +83,99 @@ public class AccountHolderDaoDB implements AccountHolderDao{
 		Connection con = conUtil.getConnection();
 		
 		//still create the sql string, but with some small changes
-		String sql = "INSERT INTO accountholders (firstname,lastname,username,password) VALUES (?,?,?,?)";
+		String sql = "INSERT INTO accountholders (firstname,lastname,username,password,balance) VALUES (?,?,?,?,?)";
 		PreparedStatement ps = con.prepareStatement(sql);
 		
 		ps.setString(1, ac.getFirstname());
 		ps.setString(2, ac.getLastname());
 		ps.setString(3, ac.getUsername());
 		ps.setString(4, ac.getPassword());
+		ps.setDouble(5, ac.getBalance());
 		
 		ps.execute();
 	}
 
 	@Override
 	public void updateAccountHolder(AccountHolder ac) {
-		try {
+		
 		Connection con = conUtil.getConnection();
 		
+		try {
+			
 		//still create the sql string, but with some small changes
-		String sql = "UPDATE accountholders SET firstname = ?, lastname = ?, username = ?, password = ?) VALUES (?,?,?,?) WHERE accountholders.id = ?";
+		String sql = "UPDATE accountholders SET firstname = ?, lastname = ?, username = ?, password = ?, balance = ? WHERE accountholders.id = ?";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, ac.getFirstname());
 		ps.setString(2, ac.getLastname());
 		ps.setString(3, ac.getUsername());
 		ps.setString(4, ac.getPassword());
-		ps.setInt(5, ac.getId());
+		ps.setDouble(5, ac.getBalance());
+		ps.setInt(6, ac.getId());
+		
+		ps.execute();
+		
+		
 		
 		}
 		catch(SQLException e) {
 			e.printStackTrace();
 		}
-	}
-
+		
+		
+	} 
+	
 	@Override
-	public void deleteAccountHolder(AccountHolder ach) {
+	public void deleteAccountHolder(AccountHolder ac) {
 		try {
 		Connection con = conUtil.getConnection();
 		
 		String sql = "DELETE FROM accountholders WHERE accountholders.id = ?";
 		PreparedStatement ps = con.prepareStatement(sql);
-		ps.setInt(1, ach.getId());
+		ps.setInt(1, ac.getId());
 		ps.execute();
 		}
 		catch(SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void updateBalance(AccountHolder ac) {
+		try {
+			Connection con = conUtil.getConnection();
+	
+			//still create the sql string, but with some small changes
+			String sql = "UPDATE accountholders SET balance = ? WHERE accountholders.id = ?;";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setDouble(1, ac.getBalance());
+			ps.setInt(2, ac.getId());
+			
+			ps.executeUpdate();
+		}
+		catch(SQLException e) {
+		e.printStackTrace();
+		}
+	}
+	
+public AccountHolder updateBalanceByAccountHolder(AccountHolder ac) {
+		
+		AccountHolder aholder = new AccountHolder();
+		
+		try {
+			Connection con = conUtil.getConnection();
+			String sql = "UPDATE accountholders SET balance = ? WHERE accountholders.username = '"+ ac.getUsername() +"'";
+			
+			Statement s = con.createStatement();
+			ResultSet rs = s.executeQuery(sql);
+				
+			aholder.setBalance(rs.getDouble(1));
+			
+			return aholder;
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 
 }

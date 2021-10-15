@@ -6,3 +6,6 @@
 2021-10-13 01:08:19 WARN  Logging:47 - Invalid credentials
 2021-10-13 01:11:08 WARN  Logging:31 - Account already exists
 2021-10-13 01:13:54 WARN  Logging:47 - Invalid credentials
+2021-10-13 15:50:05 WARN  Logging:43 - Account tried loggin in does not exist
+2021-10-13 15:52:31 WARN  Logging:43 - Account tried loggin in does not exist
+2021-10-13 23:07:18 WARN  Logging:43 - Account tried loggin in does not exist

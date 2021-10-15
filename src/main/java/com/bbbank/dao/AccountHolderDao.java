@@ -9,9 +9,9 @@ import com.bbbank.models.AccountHolder;
 
 public interface AccountHolderDao {
 	
-List<AccountHolder> getAllAccountHolders();
+	List<AccountHolder> getAllAccountHolders();
 	
-AccountHolder getUserByAccountHolder(String username);
+	AccountHolder getUserByAccountHolder(String username);
 	
 	void createAccountHolder(AccountHolder ac) throws SQLException;
 	

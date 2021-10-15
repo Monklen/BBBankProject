@@ -7,24 +7,20 @@ public class AccountHolder {
 	private String lastname;
 	private String username;
 	private String password;
-	private double balance;
+	private double balance = 0;
 	
 	//--From practice project coder - ethan mcgill--
 	
 	public AccountHolder() {}
-	
-	public AccountHolder(double balance) {
-		super();
-		this.balance = balance;
-	}
 
 	//used to send user info to the database (database auto generates the id
-	public AccountHolder(String firstname, String lastname, String username, String password) {
+	public AccountHolder(String firstname, String lastname, String username, String password, double balance) {
 		super();
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.username = username;
 		this.password = password;
+		this.balance = balance;
 	}
 
 	//used to get info from the data base and create a user from it

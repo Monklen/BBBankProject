@@ -8,6 +8,7 @@ import com.bbbank.models.AccountHolder;
 import com.bbbank.services.AccountService;
 
 public class BBBankDriver {
+	
 	private static AccountHolderDao aDao = new AccountHolderDaoDB();
 	private static AccountService aServ = new AccountService(aDao);
 
@@ -43,17 +44,18 @@ public class BBBankDriver {
 					
 					try {
 						ac = aServ.login(username, password);
-						System.out.println("Welcome! " + ac.getUsername());
+						System.out.println("\nWelcome! " + ac.getUsername());
+						menuOn = true;
 					}
 					catch(Exception e) {
 						System.out.println("Username or password was incorrect");
 					}
 					
-					menuOn = true;
+					
 					
 					while(menuOn == true) {
 						System.out.println("\nBalance: $" + ac.getBalance() + "\n");
-						System.out.println("Options:  \n1: Deposit \n2: Withdraw \n3: Transfer \n4: Account Info \n5: Exit");
+						System.out.println("Options:  \n1: Deposit \n2: Withdraw \n3: Transfer \n4: Account Info \n5: Logout");
 					
 						int choice = Integer.parseInt(scan.nextLine());
 						
@@ -67,8 +69,11 @@ public class BBBankDriver {
 								continue;
 							}
 							else {
-								double balance = ac.getBalance() - deposit;
+								double balance = ac.getBalance() + deposit;
 								ac.setBalance(balance);
+								aDao.updateAccountHolder(ac);
+								
+								
 							}
 						}
 						else if(choice == 2) {
@@ -76,13 +81,14 @@ public class BBBankDriver {
 							System.out.println("Enter amount to withdraw:");
 							double withdraw = Double.parseDouble(scan.nextLine());
 							
-							if(ac.getBalance()<=0 && ac.getBalance() - withdraw<=0) {
+							if(ac.getBalance()<=0 || ac.getBalance() - withdraw<0) {
 								System.out.println("Insufficient funds");
 								continue;
 							}
 							else {
 								double balance = ac.getBalance() - withdraw;
 								ac.setBalance(balance);
+								aDao.updateAccountHolder(ac);
 							}
 							continue;
 						}
@@ -119,7 +125,7 @@ public class BBBankDriver {
 				String password = scan.nextLine();
 				
 				try {
-					ac =aServ.signup(first, last, username, password);
+					ac = aServ.signup(first, last, username, password, 0);
 					System.out.println("Welcome " + ac.getUsername() + "! You may now sign in");
 				}
 				catch(Exception e) {
